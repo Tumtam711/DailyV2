@@ -595,3 +595,39 @@
     .move-handle:hover {
         background: #e2e8f0;
     }
+}
+
+/* ==== MANAGE PAGE FOOTER ==== */
+#footerArea {
+    margin-top: 40px;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    background: #f7f9fb;
+    border-top: 2px solid #e0e0e0;
+}
+
+#footerArea .credit a {
+    color: #0066ff;
+    font-weight: 600;
+}
+
+#footerArea .credit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ทำให้ footer ตรึงแบบไม่เกะกะ แต่เห็นง่ายบนมือถือ */
+@media (max-width: 768px) {
+    #footerArea {
+        position: sticky;
+        bottom: 0;
+        background: #ffffffee;
+        backdrop-filter: blur(5px);
+        padding: 14px 0;
+        border-top: 2px solid #d2d2d2;
+    }
+}
