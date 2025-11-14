@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="manifest" href="manifest.json">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>สรุปยอดขายประจำวัน</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="sales.css">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- PWA Install Banner -->
+<div id="installBanner" class="install-banner hidden">
+  <div class="install-content">
+    <div class="install-icon">📱</div>
+    <div class="install-text">
+      <div class="install-title">ติดตั้งแอปสรุปยอด</div>
+      <div class="install-desc">ใช้งานสะดวกจากหน้าจอหลัก</div>
+    </div>
+    <button id="installAppBtn" class="install-btn">ติดตั้ง</button>
+    <button id="closeInstallBanner" class="close-banner-btn">×</button>
+  </div>
+</div>
+  <div class="container">
+    <!-- Header -->
+    <header class="header-bar">
+      <div id="branchCount">📋 0 สาขา</div>
+      <div id="totalSales">💷 ยอดรวม 0 บาท</div>
+      <a href="manage.html" class="manage-btn">⚙️ จัดการสาขา</a>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Empty State -->
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">🏢</div>
+        <h3>ยังไม่มีสาขาในระบบ</h3>
+        <p>เพิ่มสาขาแรกเพื่อเริ่มบันทึกยอดขายประจำวัน</p>
+        <a href="manage.html" class="primary-btn large-btn">➕ เพิ่มสาขาแรก</a>
+      </div>
+
+      <!-- Branches Container -->
+      <div id="branchesContainer" class="hidden">
+        <div class="top-actions">
+          <button id="resetDataBtn" class="reset-btn">🔄 ล้างข้อมูล</button>
+        </div>
+        <div id="branches"></div>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <button id="copyReportBtn" class="copy-btn">📋 คัดลอกรายงาน</button>
+      <div class="credit">© 2025 v2.0 <a href="https://line.me/ti/p/5OUKiBw3Ti" target="_blank"><u>TT71</u></a></div>
+    </footer>
+  </div>
+
+  <!-- Custom Dialog -->
+  <div id="dialog" class="dialog hidden">
+    <div class="dialog-content">
+      <div class="dialog-icon" id="dialogIcon">💡</div>
+      <p id="dialogText"></p>
+      <div class="dialog-actions">
+        <button id="dialogCancel" class="dialog-btn cancel-btn hidden">ยกเลิก</button>
+        <button id="dialogConfirm" class="dialog-btn confirm-btn hidden">ตกลง</button>
+        <button id="dialogClose" class="dialog-btn close-btn">ปิด</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sound Effect -->
+  <audio id="copySound" preload="auto">
+    <source src="assets/copy.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="shared.js"></script>
+  <script src="sales.js"></script>
+</body>
+</html>
