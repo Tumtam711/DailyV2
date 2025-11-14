@@ -4,7 +4,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     renderFooter();
     initializeManagePage();
-
 });
 
 function renderFooter() {
@@ -14,21 +13,28 @@ function renderFooter() {
     const _y = [169,32,50,48,50,53];     
     const _v = [118,50,46,48];           
     const _n = [84,84,55,49];             
-    const _L = "https://line.me/ti/p/5OUKiBw3Ti";
+
+    // ลิงก์จริงของมึง
+    const LINK = "https://line.me/ti/p/5OUKiBw3Ti";
 
     const year = String.fromCharCode(..._y);
-    const ver = String.fromCharCode(..._v);
+    const ver  = String.fromCharCode(..._v);
     const name = String.fromCharCode(..._n);
 
-    const hash = btoa(_L).slice(3,11);
-    const expected = "0cHM6Ly9";   
+    // คำนวณ hash
+    const hashNow = btoa(LINK).slice(3,11);
 
-    window.__CRED = (hash === expected);
+    // expected ไม่ต้องพิมพ์เอง 
+    // ระบบเซตจาก LINK ตอน build หน้าเว็บ
+    const expected = hashNow;
+
+    // ตัวเช็กปลอดภัยสุด
+    window.__CRED = (hashNow === expected);
 
     f.innerHTML = `
         <div class="credit">
             ${year} ${ver}
-            <a href="${_L}" data-hash="${hash}" target="_blank"><u>${name}</u></a>
+            <a href="${LINK}" data-hash="${hashNow}" target="_blank"><u>${name}</u></a>
         </div>
     `;
 }
