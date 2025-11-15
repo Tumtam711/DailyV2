@@ -385,7 +385,7 @@ function generateSimpleReport() {
         total += salesValue;
     });
     
-    reportText += `💷 ยอดขายรวม: ${total.toLocaleString()} บาท`;
+    reportText += `💷 ยอดขายรวม : ${total.toLocaleString()} บาท`;
     
     return {
         text: reportText,

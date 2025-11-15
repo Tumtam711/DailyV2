@@ -192,7 +192,7 @@ input:focus, select:focus, textarea:focus {
   font-size: 15px;
   line-height: 1.4;
   white-space: pre-wrap;
-  font-family: 'Courier New', monospace;
+ font-family: 'Prompt', sans-serif;
 }
 
 .preview-content::-webkit-scrollbar {
