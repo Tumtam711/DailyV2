@@ -374,9 +374,9 @@ function generateSimpleReport() {
         reportText += `💵 ยอดขายวันนี้ ${salesValue.toLocaleString()} บาท\n`;
         
         if (salesValue > 0) {
-            const paidStatus = salesData.paid ? '🔹โอนครบ' : '❌โอนไม่ครบ';
-            const posStatus = salesData.pos ? '🔹POSครบ' : '❌POSไม่ครบ';
-            const billStatus = salesData.bill ? '🔹บิลครบ' : '❌บิลไม่ครบ';
+            const paidStatus = salesData.paid ? '•โอนครบ' : '❌โอนไม่ครบ';
+            const posStatus = salesData.pos ? '•POSครบ' : '❌POSไม่ครบ';
+            const billStatus = salesData.bill ? '•บิลครบ' : '❌บิลไม่ครบ';
             
             reportText += `${paidStatus} ${posStatus} ${billStatus}\n`;
         }
