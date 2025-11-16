@@ -1,11 +1,7 @@
-// =======================
-//  SERVICE WORKER (SAFE)
-// =======================
 
-// เปลี่ยนชื่อ cache ทุกครั้งที่อัปเดต asset
-const CACHE_NAME = 'sales-report-v5';
 
-// asset ที่คงที่จริงๆ (HTML ไม่ต้องใส่)
+const CACHE_NAME = 'sales-report-v6';
+
 const ASSETS = [
   '/style.css',
   '/sales.css',
