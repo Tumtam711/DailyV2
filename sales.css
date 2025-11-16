@@ -26,29 +26,31 @@
 
 .header-bar>div {
   background-color: #ededed;
-  border-radius: 5px; 
+  border-radius: 5px;
   font-size: 14px;
   font-weight: 700;
-   padding: 3px 5px;
+  padding: 3px 5px;
+
   color: #0055ff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
+
 #branchCount {
 
-  color: rgb(255, 21, 21); 
+  color: rgb(255, 21, 21);
 
-  
+
 }
 
 .manage-btn {
   background: linear-gradient(45deg, #000000, #000000);
   color: white;
   text-decoration: none;
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 600;
- 
+  margin-right: 25px;
   transition: all 0.2s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   border: none;
@@ -101,7 +103,7 @@ main {
 }
 
 .primary-btn {
-    background: linear-gradient(135deg, #029aff, #e100ff, #ffbb00);
+  background: linear-gradient(135deg, #029aff, #e100ff, #ffbb00);
   color: white;
   text-decoration: none;
   border: none;
@@ -144,7 +146,7 @@ main {
   color: #fff;
   border: none;
   border-radius: 10px;
-  padding: 10px 16px;
+  padding: 4px 16px;
   font-size: 14px;
   font-weight: 600;
   font-family: 'Prompt', sans-serif;
@@ -160,10 +162,11 @@ main {
 
 /* ========== BRANCH CARD (3 บรรทัด) ========== */
 .branch-card {
-  background: linear-gradient(135deg, #ffffff, #fafbff);
+  background: linear-gradient(135deg, #ffffff, #f4f6fd);
   border-radius: 16px;
   padding: 2px 10px;
-  margin-bottom: 16px;
+
+  margin-bottom: 4px;
   border: 2px solid #e2e8f0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
@@ -202,7 +205,7 @@ main {
 .sales-row {
   display: flex;
   align-items: center;
-  margin-top: -15px ;
+  margin-top: -15px;
   gap: 10px;
   font-weight: 600;
   font-size: 16px;
@@ -237,13 +240,27 @@ main {
   align-items: center;
   gap: 8px;
   padding-top: 1px;
-  color: #000000;
   border-top: 1px dashed #e2e8f0;
   animation: fadeIn 0.3s ease;
 }
 
+/* ✅ ซ่อนทั้งแถวเมื่อไม่มีข้อมูล */
 .checkbox-row.hidden {
-  display: none;
+  display: none !important;
+  padding: 0;
+  margin: 0;
+  height: 0;
+  opacity: 0;
+}
+
+/* ปรับการ์ดเมื่อซ่อน checkbox */
+.branch-card:has(.checkbox-row.hidden) {
+  min-height: 100px; /* ลดความสูงเมื่อไม่มี checkbox */
+  gap: 10px;
+}
+
+.branch-card:not(:has(.checkbox-row.hidden)) {
+  min-height: 140px; /* ความสูงปกติเมื่อมี checkbox */
 }
 
 .checkbox-item {
@@ -282,7 +299,7 @@ footer {
 }
 
 .copy-btn {
-  background: linear-gradient(135deg, #00a524,#00c943, #00a038);
+  background: linear-gradient(135deg, #00a524, #00c943, #00a038);
   color: white;
   border: none;
   border-bottom: 3px solid #0000002d;
@@ -298,7 +315,7 @@ footer {
 }
 
 .copy-btn:hover {
- background: linear-gradient(135deg, #00ccff,#cb1fff, #ffa200);
+  background: linear-gradient(135deg, #00ccff, #cb1fff, #ffa200);
   transform: translateY(-2px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
@@ -379,89 +396,95 @@ footer {
 /* ========== RESPONSIVE DESIGN ========== */
 @media (max-width: 480px) {
   .container {
-  max-width: 100%;
+    max-width: 100%;
   }
+
   .header-bar {
     padding: 10px 12px;
-    flex-direction: row; /* ✅ ยังคงแนวนอน */
+    flex-direction: row;
+    /* ✅ ยังคงแนวนอน */
     gap: 8px;
   }
+
   .header-bar>div {
     font-size: 16px;
   }
 
-.manage-btn {
-    font-size: 11px;
-    padding: 6px 10px;
-    min-width: 60px;
+  .manage-btn {
+    font-size: 15px;
+      padding: 2px 12px;
+    padding-top: 5px;
+    min-width: 79px;
+    text-align: center;
   }
 }
 
-  main {
-    padding: 16px 12px;
-  }
+main {
+  padding: 16px 12px;
+}
 
-  .empty-state {
-    padding: 40px 16px;
-    margin: 10px 0;
-  }
+.empty-state {
+  padding: 40px 16px;
+  margin: 10px 0;
+}
 
-  .empty-icon {
-    font-size: 56px;
-  }
+.empty-icon {
+  font-size: 56px;
+}
 
-  .empty-state h3 {
-    font-size: 24px;
-  }
+.empty-state h3 {
+  font-size: 24px;
+}
 
-  .branch-card {
-    padding: 6px;
-    margin-bottom: 12px;
-  }
+.branch-card {
+  padding: 6px;
+  margin-bottom: 12px;
+}
 
-  .branch-name {
-    font-size: 18px;
-  }
-  .sales-row {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 8px;
-  }
+.branch-name {
+  font-size: 18px;
+}
 
-  .branch-input {
-    width: 180px;
-    padding: 2px 10px;
-    font-size: 18px;
-    flex-shrink: 0;
-    flex-wrap: nowrap;
-    min-width: 120px;
-  }
+.sales-row {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
 
-  .checkbox-row {
-    gap: 6px;
-    align-items: stretch;
-  }
+.branch-input {
+  width: 180px;
+  padding: 2px 10px;
+  font-size: 18px;
+  flex-shrink: 0;
+  flex-wrap: nowrap;
+  min-width: 120px;
+}
 
-  .checkbox-item {
-    justify-content: flex-start;
-    padding: 6px 12px;
-  }
+.checkbox-row {
+  gap: 6px;
+  align-items: stretch;
+}
 
-  .copy-btn {
-    margin: 0 10px;
-    padding: 8px 0;
-    font-size: 20px;
-  }
+.checkbox-item {
+  justify-content: flex-start;
+  padding: 6px 12px;
+}
 
-  .top-actions {
-    justify-content: center;
-  }
+.copy-btn {
+  margin: 0 10px;
+  padding: 8px 0;
+  font-size: 20px;
+}
 
-  .reset-btn {
-    width: 100%;
-    max-width: 200px;
-  }
+.top-actions {
+  justify-content: center;
+}
+
+.reset-btn {
+  width: 100%;
+  max-width: 200px;
+}
 }
 
 @media (max-width: 360px) {
@@ -520,4 +543,94 @@ footer {
     color: #ff0000;
     text-shadow: none;
   }
+}
+
+/* บรรทัด 3: Checkboxes */
+.checkbox-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px dashed #e2e8f0;
+  
+  /* ✅ Animation เมื่อแสดง */
+  animation: slideDown 0.4s ease-out !important;
+  transform-origin: top;
+  overflow: hidden;
+}
+
+/* ✅ ใช้ opacity + height แทน display: none */
+.checkbox-row.hidden {
+  opacity: 0;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  border: none;
+  transform: scaleY(0);
+  
+  /* ✅ ให้ยังคง layout แต่ซ่อน */
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ✅ Animation สำหรับการ์ด */
+.branch-card {
+  transition: min-height 0.2s ease-out, gap 0.2s ease-out !important;
+}
+
+.branch-card.compact {
+  min-height: 110px;
+  gap: 10px;
+}
+
+.branch-card.normal {
+  min-height: 140px;
+  gap: 12px;
+}
+
+/* ========== ANIMATIONS ========== */
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+    height: 0;
+  }
+  70% {
+    opacity: 0.7;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    height: auto;
+  }
+}
+
+/* ✅ Animation เมื่อซ่อน */
+.checkbox-row.hidden {
+  animation: slideUp 0.3s ease-in forwards;
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+    height: auto;
+  }
+  30% {
+    opacity: 0.7;
+    transform: translateY(2px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-8px);
+    height: 0;
+  }
+}
+
+/* ✅ ป้องกันการกด checkbox ที่ซ่อนอยู่ */
+.checkbox-row.hidden * {
+  pointer-events: none;
 }
