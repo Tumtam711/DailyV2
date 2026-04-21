@@ -43,7 +43,7 @@
 }
 
 .manage-btn {
-  background: linear-gradient(45deg, #000000, #000000);
+  background: linear-gradient(45deg, #22024a, #000000);
   color: white;
   text-decoration: none;
   padding: 8px 12px;
@@ -142,7 +142,7 @@ main {
 }
 
 .reset-btn {
-  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  background: linear-gradient(135deg, #fb2f2f, #a71616);
   color: #fff;
   border: none;
   border-radius: 10px;
