@@ -1,6 +1,6 @@
 
 
-const CACHE_NAME = 'sales-report-v7.2';
+const CACHE_NAME = 'sales-report-v12';
 
 const ASSETS = [
   '/style.css',
