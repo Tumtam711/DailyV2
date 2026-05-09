@@ -43,11 +43,11 @@
 }
 
 .manage-btn {
-  background: linear-gradient(45deg, #22024a, #000000);
+  background: linear-gradient(45deg, #000000, #19065c);
   color: white;
   text-decoration: none;
   padding: 8px 12px;
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   margin-right: 25px;
@@ -142,7 +142,7 @@ main {
 }
 
 .reset-btn {
-  background: linear-gradient(135deg, #fb2f2f, #a71616);
+  background: linear-gradient(135deg, #fe4343, #b91c1c);
   color: #fff;
   border: none;
   border-radius: 10px;
@@ -255,12 +255,14 @@ main {
 
 /* ปรับการ์ดเมื่อซ่อน checkbox */
 .branch-card:has(.checkbox-row.hidden) {
-  min-height: 100px; /* ลดความสูงเมื่อไม่มี checkbox */
+  min-height: 100px;
+  /* ลดความสูงเมื่อไม่มี checkbox */
   gap: 10px;
 }
 
 .branch-card:not(:has(.checkbox-row.hidden)) {
-  min-height: 140px; /* ความสูงปกติเมื่อมี checkbox */
+  min-height: 140px;
+  /* ความสูงปกติเมื่อมี checkbox */
 }
 
 .checkbox-item {
@@ -394,9 +396,9 @@ footer {
 }
 
 /* ========== RESPONSIVE DESIGN ========== */
-@media (max-width: 480px) {
+@media (max-width: 900px) {
   .container {
-    max-width: 100%;
+    max-width: 150%;
   }
 
   .header-bar {
@@ -412,7 +414,7 @@ footer {
 
   .manage-btn {
     font-size: 15px;
-      padding: 2px 12px;
+    padding: 2px 12px;
     padding-top: 5px;
     min-width: 79px;
     text-align: center;
@@ -485,30 +487,9 @@ main {
   width: 100%;
   max-width: 200px;
 }
-}
 
-@media (max-width: 360px) {
-  .branch-card {
-    padding: 12px;
-  }
 
-  .branch-name {
-    font-size: 15px;
-  }
 
-  .sales-row {
-    font-size: 14px;
-  }
-
-  .branch-input {
-    font-size: 14px;
-    padding: 8px 10px;
-  }
-
-  .checkbox-item {
-    font-size: 13px;
-  }
-}
 
 /* Utility Class */
 .hidden {
@@ -553,11 +534,24 @@ main {
   gap: 8px;
   padding-top: 8px;
   border-top: 1px dashed #e2e8f0;
-  
+
   /* ✅ Animation เมื่อแสดง */
   animation: slideDown 0.4s ease-out !important;
   transform-origin: top;
   overflow: hidden;
+}
+
+@media (max-width: 900px) {
+  .checkbox-row {
+    display: grid; /* สลับมาใช้ Grid */
+    grid-template-columns: repeat(3, 1fr); /* แบ่ง 3 คอลัมน์ (1 2 3 / 4 5 6) */
+    gap: 1px; /* เพิ่มระยะห่างนิดนึงให้กดง่ายบนมือถือ */
+  }
+
+  .checkbox-item {
+    justify-content: flex-start; /* ให้ติ๊กกับตัวหนังสือชิดซ้ายในช่องของมัน */
+    font-size: 14px; /* ย่อตัวหนังสือลงนิดหน่อยถ้ามันเบียด */
+  }
 }
 
 /* ✅ ใช้ opacity + height แทน display: none */
@@ -569,7 +563,7 @@ main {
   margin: 0;
   border: none;
   transform: scaleY(0);
-  
+
   /* ✅ ให้ยังคง layout แต่ซ่อน */
   visibility: hidden;
   pointer-events: none;
@@ -597,10 +591,12 @@ main {
     transform: translateY(-8px);
     height: 0;
   }
+
   70% {
     opacity: 0.7;
     transform: translateY(2px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -619,10 +615,12 @@ main {
     transform: translateY(0);
     height: auto;
   }
+
   30% {
     opacity: 0.7;
     transform: translateY(2px);
   }
+
   100% {
     opacity: 0;
     transform: translateY(-8px);
