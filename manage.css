@@ -632,33 +632,3 @@
         border-top: 2px solid #d2d2d2;
     }
 }
-
-.branch-item {
-    /* คุณสมบัติเดิมของรายการสาขา */
-    cursor: grab; /* เปลี่ยนเคอร์เซอร์ให้ดูเหมือนลากได้ */
-    display: flex;
-    align-items: center;
-}
-
-.branch-item.dragging {
-    opacity: 0.5; /* ทำให้รายการที่ถูกลากดูจางลง */
-    border: 2px dashed #007bff;
-    box-shadow: none;
-    background-color: #e9f7ff;
-}
-
-/* ⭐️ CSS สำหรับแสดงตำแหน่งที่จะวาง */
-.branch-item.drag-over-top {
-    border-top: 3px solid #007bff; /* เส้นด้านบน */
-}
-
-.branch-item.drag-over-bottom {
-    border-bottom: 3px solid #007bff; /* เส้นด้านล่าง */
-}
-
-.drag-handle {
-    cursor: grab;
-    margin-right: 10px;
-    font-size: 1.2em;
-    color: #888;
-}
