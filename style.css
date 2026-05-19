@@ -8,7 +8,7 @@
 }
 
 body {
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Prompt', sans-serif;
   background: linear-gradient(135deg, #e2f2f4 0%, #f0f7ff 100%);
   margin: 0;
   color: #333;
@@ -43,7 +43,7 @@ p {
 
 /* ========== BUTTON BASE STYLES ========== */
 button {
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Prompt', sans-serif;
   cursor: pointer;
   transition: all 0.3s ease;
   border: none;
@@ -56,13 +56,13 @@ button:disabled {
 }
 
 button:focus-visible {
-  outline: 2px solid #0066ff;
+  outline: 2px solid #0e54bc;
   outline-offset: 2px;
 }
 
 /* ========== INPUT BASE STYLES ========== */
 input, select, textarea {
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Prompt', sans-serif;
   outline: none;
   transition: all 0.3s ease;
 }
@@ -131,7 +131,7 @@ input:focus, select:focus, textarea:focus {
   padding: 12px 24px;
   border: none;
   border-radius: 10px;
-  font-family: 'Kanit', sans-serif;
+  font-family: 'Prompt', sans-serif;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -192,7 +192,7 @@ input:focus, select:focus, textarea:focus {
   font-size: 15px;
   line-height: 1.4;
   white-space: pre-wrap;
- font-family: 'Kanit', sans-serif;
+ font-family: 'Prompt', sans-serif;
 }
 
 .preview-content::-webkit-scrollbar {
@@ -570,20 +570,26 @@ select:focus-visible {
 /* ========== PWA INSTALL BANNER (MODIFIED) ========== */
 .install-banner {
   position: fixed;
-  top: 20px; /* moved to top */
+  bottom: 200px; /* ปรับลงมานิดนึงให้ดูไม่ติดขอบบนจนเกินไป */
   left: 50%;
   transform: translateX(-50%) translateY(0);
-  width: 90%;
-  max-width: 400px;
+  width: 75%; /* ขยายกว้างขึ้นนิดนึงเพื่อบีบให้ตัวหนังสืออยู่บรรทัดเดียวกัน */
+  max-width: 380px; /* บีบความกว้างสูงสุดลงหน่อย */
   background: linear-gradient(135deg, #ffffff, #f8faff);
-  border: 2px solid #0066ff;
-  border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 102, 255, 0.3);
+  border: 1.5px solid #0066ff; /* ลดความหนาเส้นขอบให้ดูเพรียวขึ้น */
+  border-radius: 10px; /* ลดความมนลง จาก 16px -> 10px ป้ายจะดูแบนและเตี้ยลงทันตา */
+  box-shadow: 0 4px 16px rgba(0, 102, 255, 0.2); /* ลดเงาให้ดูคลีน ไม่หนาเทอะทะ */
   z-index: 9999;
-  /* use transitions for smooth show/hide */
   transition: transform 0.45s cubic-bezier(.2,.9,.2,1), opacity 0.45s ease;
   opacity: 1;
   pointer-events: auto;
+
+  /* 💡 จุดสำคัญที่ทำให้ป้ายเตี้ยลง */
+  padding: 2px 2px; /* บีบระยะห่าง บน-ล่าง ให้เหลือแค่ 8px (ของเดิมน่าจะกว้างกว่านี้) */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
 }
 
 /* Hidden state now uses opacity + translate so transitions animate smoothly */
@@ -666,12 +672,12 @@ select:focus-visible {
 /* Responsive: keep at top on small screens */
 @media (max-width: 480px) {
   .install-banner {
-    top: 10px;
-    width: 95%;
+    bottom: 200px;
+    width: 68%;
   }
   
   .install-content {
-    padding: 14px;
+    padding: 2px;
     gap: 10px;
   }
   
@@ -691,4 +697,14 @@ select:focus-visible {
     padding: 8px 14px;
     font-size: 13px;
   }
+}
+
+
+html, body {
+    touch-action: pan-x pan-y; /* อนุญาตแค่เลื่อนซ้ายขวาบนล่าง ห้ามถ่างนิ้ว (pinch-to-zoom) */
+    -webkit-text-size-adjust: 100%; /* ป้องกัน iOS ขยายขนาด Font เองอัตโนมัติ */
+}
+
+input, select, textarea {
+    font-size: 16px !important;
 }

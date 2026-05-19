@@ -1,14 +1,14 @@
 
 
-const CACHE_NAME = 'sales-report-v11.63'; // เปลี่ยนชื่อเพื่อบังคับอัปเดตแคช
+const CACHE_NAME = 'sales-report-v11.62'; // เปลี่ยนชื่อเพื่อบังคับอัปเดตแคช
 
 const ASSETS = [
   '/style.css',
   '/sales.css',
   '/manage.css',
-  '/shared.js',
-  '/sales.js',
-  '/manage.js',
+  '/shared.js?v=11.62',
+  '/sales.js?v=11.62',
+  '/manage.js?v=11.62',
   '/manifest.json',
   '/assets/icon-192.png',
   '/assets/copy.mp3'
