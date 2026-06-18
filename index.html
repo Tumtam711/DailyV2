@@ -1,62 +1,162 @@
-<!DOCTYPE html>
-<html lang="th">
+﻿<!DOCTYPE html>
+<html lang="th" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>สรุปยอดขายประจำวัน</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="sales.css">
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&display=swap" rel="stylesheet">
+  <title>สรุปยอดขายประจำวัน PWA</title>
+  <link rel="stylesheet" href="style.css?v=13.0">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- PWA Install Banner -->
-<div id="installBanner" class="install-banner hidden">
-  <div class="install-content">
-    <div class="install-icon">📱</div>
-    <div class="install-text">
-      <div class="install-title">ติดตั้งแอปสรุปยอด</div>
-      <div class="install-desc">ใช้งานสะดวกจากหน้าจอหลัก</div>
+  <div id="installBanner" class="install-banner hidden">
+    <div class="install-content">
+      <div class="install-icon">📱</div>
+      <div class="install-text">
+        <div class="install-title">ติดตั้งแอปสรุปยอด</div>
+        <div class="install-desc">ใช้งานสะดวกจากหน้าจอหลัก</div>
+      </div>
+      <button id="installAppBtn" class="install-btn">ติดตั้ง</button>
+      <button id="closeInstallBanner" class="close-banner-btn">×</button>
     </div>
-    <button id="installAppBtn" class="install-btn">ติดตั้ง</button>
-    <button id="closeInstallBanner" class="close-banner-btn">×</button>
   </div>
-</div>
-  <div class="container">
-    <!-- Header -->
-    <header class="header-bar">
-      <div id="branchCount">📋 0 สาขา</div>
-      <div id="totalSales">💷 ยอดรวม 0 บาท</div>
 
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Sticky Top Header -->
+    <header class="header-bar">
+      <div class="header-top-row">
+        <div class="header-title-area">
+          <span class="header-date" id="currentDateDisplay">กำลังโหลด...</span>
+          <span class="header-title">Daily Sales</span>
+        </div>
+        <div class="header-actions">
+          <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="สลับธีม">🌙</button>
+          <div class="header-stats">
+            <div id="branchCount">📋 0 สาขา</div>
+            <div id="totalSales">💷 0</div>
+          </div>
+        </div>
+      </div>
+      <div class="header-progress">
+        <div id="headerProgressBar" class="header-progress-bar"></div>
+      </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-      <!-- Empty State -->
-      <div id="emptyState" class="empty-state">
-        <div class="empty-icon">🏢</div>
-        <h3>ยังไม่มีสาขาในระบบ</h3>
-        <p>เพิ่มสาขาแรกเพื่อเริ่มบันทึกยอดขายประจำวัน</p>
-        <a href="manage.html" class="primary-btn large-btn">+ เพิ่มสาขาแรก</a>
-      </div>
 
-      <!-- Branches Container -->
-      <div id="branchesContainer" class="hidden">
-        <div class="top-actions">
-          <a href="manage.html" class="manage-btn">⚙️ จัดการสาขา</a>
-          <button id="resetDataBtn" class="reset-btn">🔄 ล้างข้อมูล</button>
+      <!-- TAB 1: ยอดวันนี้ -->
+      <section id="salesPanel" class="tab-panel active">
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">🏢</div>
+          <h3>ยังไม่มีสาขาในระบบ</h3>
+          <p>เพิ่มสาขาแรกเพื่อเริ่มบันทึกยอดขายประจำวัน</p>
+          <button onclick="switchTab('manage')" class="primary-btn">+ เพิ่มสาขาแรก</button>
         </div>
-        <div id="branches"></div>
-      </div>
+        <div id="branchesContainer" class="hidden">
+          <div class="top-actions">
+            <button onclick="switchTab('manage')" class="reset-btn" style="background:rgba(99,102,241,0.08);color:var(--accent-primary);border-color:rgba(99,102,241,0.18);">⚙️ จัดการสาขา</button>
+            <button id="resetDataBtn" class="reset-btn">🔄 ล้างข้อมูลยอด</button>
+          </div>
+          <div id="branches"></div>
+        </div>
+        <!-- Footer: copy button lives here, inside sales tab -->
+        <div id="footerArea"></div>
+      </section>
+
+      <!-- TAB 2: ประวัติย้อนหลัง -->
+      <section id="historyPanel" class="tab-panel">
+        <div class="history-filter-bar" id="historyFilterBar">
+          <span class="history-filter-title">📅 เลือกเดือน:</span>
+          <select id="historyMonthSelect" class="history-select-month"></select>
+          <button id="clearHistoryBtn" class="reset-btn" style="flex-shrink:0;">🗑️ ล้างประวัติ</button>
+        </div>
+        <div id="historyStatsPanel" class="glass-card hidden">
+          <h4 style="font-size:14px;margin-bottom:10px;color:var(--text-primary);">📊 สัดส่วนยอดขายรวมตามภาค</h4>
+          <div id="historyStatsBars"></div>
+        </div>
+        <div id="emptyHistoryState" class="empty-state">
+          <div class="empty-icon">📂</div>
+          <h3>ยังไม่มีประวัติในระบบ</h3>
+          <p>บันทึกและกด "คัดลอกรายงาน" เพื่อเก็บบันทึกประวัติในเครื่อง</p>
+        </div>
+        <div id="historyAccordionContainer" class="hidden"></div>
+      </section>
+
+      <!-- TAB 3: จัดการสาขา -->
+      <section id="managePanel" class="tab-panel">
+        <div class="glass-card add-branch-card">
+          <h2>🏢 เพิ่มสาขาใหม่</h2>
+          <div class="add-form">
+            <div class="input-group">
+              <label for="newBranchName">ชื่อสาขา:</label>
+              <input type="text" id="newBranchName" placeholder="เช่น 'ระยอง' (ไม่ต้องพิมพ์คำว่าสาขา)" maxlength="50">
+              <div class="input-hint">สูงสุด 50 ตัวอักษร</div>
+            </div>
+            <div class="input-group">
+              <label>เลือกโซนภาค:</label>
+              <div id="zonePillSelector" class="zone-pill-selector">
+                <span class="zone-pill selected" data-zone="เหนือ">เหนือ</span>
+                <span class="zone-pill" data-zone="อีสานบน">อีสานบน</span>
+                <span class="zone-pill" data-zone="อีสานล่าง">อีสานล่าง</span>
+                <span class="zone-pill" data-zone="กลาง">กลาง</span>
+                <span class="zone-pill" data-zone="ตะวันออก">ตะวันออก</span>
+                <span class="zone-pill" data-zone="ตะวันตก">ตะวันตก</span>
+                <span class="zone-pill" data-zone="ใต้">ใต้</span>
+              </div>
+            </div>
+            <button id="addBranchBtn" class="primary-btn" style="width:100%;">+ เพิ่มสาขาใหม่</button>
+          </div>
+        </div>
+
+        <div class="glass-card branches-section">
+          <h3>📋 จัดเรียงและจัดการรายการสาขา</h3>
+          <p style="font-size:11px;color:var(--text-muted);margin-bottom:12px;">💡 สามารถลากค้างเพื่อสลับลำดับการ์ดสาขาได้</p>
+          <div id="noBranchesMessage" class="no-branches-message">
+            <p>ยังไม่มีสาขาในระบบ</p>
+          </div>
+          <div id="branchesList" class="branches-list"></div>
+        </div>
+
+        <div class="glass-card system-actions">
+          <h3>☁️ สำรองข้อมูลและคืนค่าระบบ</h3>
+          <div class="action-buttons">
+            <button id="exportBranchesBtn" class="action-btn btn-cloud-backup">🚀 เริ่มสำรองข้อมูลขึ้น Cloud</button>
+            <button id="importBranchesBtn" class="action-btn btn-cloud-restore">📂 กู้คืนข้อมูลจาก Cloud</button>
+            <div style="height:1px;background:var(--border-glass);margin:4px 0;"></div>
+            <button id="resetSystemBtn" class="action-btn danger-btn">⚠️ ล้างระบบข้อมูลทั้งหมด</button>
+          </div>
+          <input type="file" id="importFileInput" accept=".json" style="display:none;">
+        </div>
+
+        <!-- Credit footer for manage tab -->
+        <div id="manageFooterArea"></div>
+      </section>
+
     </main>
 
-    <!-- Footer -->
-  <footer id="footerArea"></footer>
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+      <button onclick="switchTab('sales')" id="nav-sales" class="nav-item active">
+        <span class="nav-icon">💵</span>
+        <span>ยอดวันนี้</span>
+      </button>
+      <button onclick="switchTab('history')" id="nav-history" class="nav-item">
+        <span class="nav-icon">📂</span>
+        <span>ประวัติย้อนหลัง</span>
+      </button>
+      <button onclick="switchTab('manage')" id="nav-manage" class="nav-item">
+        <span class="nav-icon">⚙️</span>
+        <span>จัดการสาขา</span>
+      </button>
+    </nav>
 
   </div>
 
-  <!-- Custom Dialog -->
+  <!-- Dialog -->
   <div id="dialog" class="dialog hidden">
     <div class="dialog-content">
       <div class="dialog-icon" id="dialogIcon">💡</div>
@@ -69,12 +169,15 @@
     </div>
   </div>
 
-  <!-- Sound Effect -->
+  <div id="toast-container"></div>
+
   <audio id="copySound" preload="auto">
     <source src="assets/copy.mp3" type="audio/mpeg">
   </audio>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
- <script src="shared.js?v=11.62"></script>
-<script src="sales.js?v=11.62"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="shared.js?v=13.10"></script>
+  <script src="sales.js?v=13.10"></script>
+  <script src="manage.js?v=13.10"></script>
 </body>
 </html>

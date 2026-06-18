@@ -1,14 +1,10 @@
-
-
-const CACHE_NAME = 'sales-report-v11.62'; // เปลี่ยนชื่อเพื่อบังคับอัปเดตแคช
+const CACHE_NAME = 'sales-report-v13.10'; // เปลี่ยนชื่อเพื่อบังคับอัปเดตแคช
 
 const ASSETS = [
   '/style.css',
-  '/sales.css',
-  '/manage.css',
-  '/shared.js?v=11.62',
-  '/sales.js?v=11.62',
-  '/manage.js?v=11.62',
+  '/shared.js',
+  '/sales.js',
+  '/manage.js',
   '/manifest.json',
   '/assets/icon-192.png',
   '/assets/copy.mp3'
@@ -58,7 +54,7 @@ self.addEventListener('fetch', event => {
           return res;
         })
         .catch(() => caches.match(req)) // ถ้าไม่มีเน็ตค่อยเอาในแคช
-    );
+      );
     return;
   }
 

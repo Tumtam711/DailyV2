@@ -1,129 +1,14 @@
 <!DOCTYPE html>
-<html lang="th">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>จัดการสาขา</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="manage.css">
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8">
+  <title>กำลังเปลี่ยนเส้นทาง...</title>
+  <script>
+    // Redirect to index.html indicating the manage tab in hash
+    window.location.replace("index.html#manage");
+  </script>
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <header class="management-header">
-      <a href="index.html" class="back-btn">← กลับหน้ารายงาน</a>
-      <h1>⚙️ จัดการสาขา</h1>
-      <div class="header-spacer"></div> <!-- สำหรับจัดวางสมดุล -->
-    </header>
-
-    <!-- Main Content -->
-    <main class="management-main">
-      <!-- Add Branch Card -->
-      <div class="add-branch-card">
-        <h2>🏢 เพิ่มสาขาใหม่</h2>
-        <div class="add-form">
-          <div class="input-group">
-            <input type="text" id="newBranchName" placeholder="ชื่อสาขา (เช่น 'ระยอง' ไม่ต้องใส่ 'สาขา')" maxlength="50">
-            <div class="input-hint">เลือกโซนของสาขา</div>
-          </div>
-          <div class="input-group">
-            <select id="newBranchRegion">
-          <!--    
-              <option value="อีสานบน">อีสานบน</option>
-              <option value="กลาง">กลาง</option>
-              <option value="ตะวันตก">ตะวันตก</option>-->
-              <option value="เหนือ">เหนือ</option>
-               <option value="อีสานล่าง">อีสานล่าง</option>
-              <option value="ตะวันออก">ตะวันออก</option>
-              <option value="ใต้">ใต้</option>
-            </select>
-          </div>
-          
-          <button id="addBranchBtn" class="add-btn">
-            + เพิ่มสาขา
-          </button>
-        </div>
-      </div>
-
-      <!-- Branches List -->
-      <div class="branches-section">
-        <h3>📋 รายการสาขา</h3>
-        
-        <!-- Empty State -->
-        <div id="noBranchesMessage" class="no-branches-message">
-          <div class="empty-icon">🏢</div>
-          <p>ยังไม่มีสาขาในระบบ</p>
-          <p>เพิ่มสาขาแรกโดยใช้ฟอร์มด้านบน</p>
-        </div>
-
-        <!-- Branches List -->
-        <div id="branchesList" class="branches-list"></div>
-      </div>
-
-      <!-- System Actions -->
-      <div class="system-actions">
-        <h3>🗃️สำรองข้อมูล</h3>
-        <div class="action-buttons">
-          <button id="exportBranchesBtn" class="export-btn">
-            📤 ส่งออก รายชื่อสาขา
-          </button>
-          <button id="importBranchesBtn" class="import-btn">
-            📥 นำเข้า รายชื่อสาขา
-          </button>
-          <button id="resetSystemBtn" class="danger-btn">
-            ⚠️ ล้างระบบทั้งหมด 
-          </button>
-        </div>
-        
-        <!-- Hidden File Input -->
-        <input type="file" id="importFileInput" accept=".json" style="display: none;">
-      </div>
-    </main>
-  </div>
-
-  <!-- Custom Dialog -->
-  <div id="dialog" class="dialog hidden">
-    <div class="dialog-content">
-      <div class="dialog-icon" id="dialogIcon">💡</div>
-      <p id="dialogText"></p>
-      <div class="dialog-actions">
-        <button id="dialogCancel" class="dialog-btn cancel-btn hidden">ยกเลิก</button>
-        <button id="dialogConfirm" class="dialog-btn confirm-btn hidden">ตกลง</button>
-        <button id="dialogClose" class="dialog-btn close-btn">ปิด</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Edit Branch Dialog Content (จะสร้างด้วย JavaScript) -->
-  <div id="editDialogContent" style="display: none;">
-    <div class="edit-form">
-      <div class="input-group">
-        <label for="editBranchName">ชื่อสาขา:</label>
-        <input type="text" id="editBranchName" maxlength="50">
-        <div class="input-hint">สูงสุด 50 ตัวอักษร</div>
-      </div>
-      
-      <div class="input-group">
-        <label for="editBranchRegion">โซน:</label>
-        <select id="editBranchRegion">
-          <option value="เหนือ">เหนือ</option>
-          <option value="อีสานบน">อีสานบน</option>
-          <option value="อีสานล่าง">อีสานล่าง</option>
-          <option value="กลาง">กลาง</option>
-          <option value="ตะวันออก">ตะวันออก</option>
-          <option value="ตะวันตก">ตะวันตก</option>
-          <option value="ใต้">ใต้</option>
-        </select>
-      </div>
-    </div>
-  </div>
-<footer id="footerArea"></footer>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="shared.js"></script>
-  <script src="manage.js"></script>
+  <p>กำลังเปลี่ยนเส้นทางไปหน้าหลักระบบใหม่... <a href="index.html#manage">คลิกที่นี่หากไม่มีการเปลี่ยนเส้นทาง</a></p>
 </body>
 </html>
