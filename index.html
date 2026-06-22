@@ -1,13 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="manifest" href="manifest.json">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>สรุปยอดขายประจำวัน PWA</title>
   <link rel="stylesheet" href="style.css?v=13.0">
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <!-- PWA Install Banner -->
@@ -58,7 +59,6 @@
         </div>
         <div id="branchesContainer" class="hidden">
           <div class="top-actions">
-            <button onclick="switchTab('manage')" class="reset-btn" style="background:rgba(99,102,241,0.08);color:var(--accent-primary);border-color:rgba(99,102,241,0.18);">⚙️ จัดการสาขา</button>
             <button id="resetDataBtn" class="reset-btn">🔄 ล้างข้อมูลยอด</button>
           </div>
           <div id="branches"></div>
@@ -141,15 +141,15 @@
     <!-- Bottom Navigation -->
     <nav class="bottom-nav">
       <button onclick="switchTab('sales')" id="nav-sales" class="nav-item active">
-        <span class="nav-icon">💵</span>
+        <span class="nav-icon"><i data-lucide="banknote"></i></span>
         <span>ยอดวันนี้</span>
       </button>
       <button onclick="switchTab('history')" id="nav-history" class="nav-item">
-        <span class="nav-icon">📂</span>
+        <span class="nav-icon"><i data-lucide="clipboard-clock"></i></span>
         <span>ประวัติย้อนหลัง</span>
       </button>
       <button onclick="switchTab('manage')" id="nav-manage" class="nav-item">
-        <span class="nav-icon">⚙️</span>
+        <span class="nav-icon"><i data-lucide="store"></i></span>
         <span>จัดการสาขา</span>
       </button>
     </nav>
@@ -176,8 +176,9 @@
   </audio>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="shared.js?v=13.10"></script>
-  <script src="sales.js?v=13.10"></script>
-  <script src="manage.js?v=13.10"></script>
+  <script src="shared.js?v=13.0"></script>
+  <script src="sales.js?v=13.0"></script>
+  <script src="manage.js?v=13.0"></script>
+  <script>lucide.createIcons();</script>
 </body>
 </html>
