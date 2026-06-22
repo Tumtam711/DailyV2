@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sales-report-v13.10'; // เปลี่ยนชื่อเพื่อบังคับอัปเดตแคช
+const CACHE_NAME = 'sales-report-v13.20'; // เปลี่ยนชื่อเพื่อบังคับอัปเดตแคช
 
 const ASSETS = [
   '/style.css',
